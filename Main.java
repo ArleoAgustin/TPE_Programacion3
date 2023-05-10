@@ -1,66 +1,139 @@
 package TPE_Programacion3;
 
+import java.util.Iterator;
+
 public class Main {
 
     public static void main(String[] args) {
-
-        Arco<Integer> a1 = new Arco<>(1,2,1);
-        Arco<Integer> a2 = new Arco<>(2,1,1);
-        Arco<Integer> a3 = new Arco<>(1,4,4);
-        Arco<Integer> a4 = new Arco<>(4,2,5);
-        Arco<Integer> a5 = new Arco<>(1,3,3);
-        Arco<Integer> a6 = new Arco<>(4,3,11);
-        Arco<Integer> a7 = new Arco<>(4,1,10);
-
-        GrafoDirigido gDirigido = new GrafoDirigido();
+/*
+        GrafoDirigido gDirigido = new GrafoDirigido();  //instancia el grafo dirigido
+//carga los vertices
 
         gDirigido.agregarVertice(1);
         gDirigido.agregarVertice(2);
         gDirigido.agregarVertice(3);
         gDirigido.agregarVertice(4);
 
-        gDirigido.agregarArco(1,2,1);
-        gDirigido.agregarArco(2,1,1);
-        gDirigido.agregarArco(1,4,4);
-        gDirigido.agregarArco(4,2,5);
-        gDirigido.agregarArco(1,3,3);
-        gDirigido.agregarArco(4,3,11);
-        gDirigido.agregarArco(4,1,10);
+//carga los arcos
 
-     //   System.out.println(gDirigido.contieneVertice(1));
-     //   System.out.println(gDirigido.existeArco(4,3));
-     //   System.out.println(gDirigido.obtenerArco(1,4));
+        gDirigido.agregarArco(1, 2, 1);
+        gDirigido.agregarArco(2, 1, 1);
+        gDirigido.agregarArco(1, 4, 4);
+        gDirigido.agregarArco(4, 2, 5);
+        gDirigido.agregarArco(1, 3, 3);
+        gDirigido.agregarArco(4, 3, 11);
+        gDirigido.agregarArco(4, 1, 10);
 
-        System.out.println("cantidad de arcos: "+ gDirigido.cantidadArcos());
+        //   System.out.println(gDirigido.contieneVertice(1)); //verifica si contien el vertice
+        //   System.out.println(gDirigido.existeArco(4,3));    //verifica si existe el arco
+        //  System.out.println(gDirigido.obtenerArco(1,4));    //obtiene el arco
 
-        gDirigido.obtenerArcoss();
+        //gDirigido.borrarVertice(1);    //elimona un vertice
+
+        System.out.println(" ");
+        System.out.println("cantidad de vertices " + gDirigido.cantidadVertices());  //cantidad de vertices
+
+        System.out.println("cantidad de arcos: " + gDirigido.cantidadArcos());       //cantidad de arcos
 
         System.out.println(" ");
 
-        System.out.println("cantidad de vertices "+ gDirigido.cantidadVertices());
+////////////////////////////////////////////////////////iteradores/////////////////////////////////////////////////////
 
-        gDirigido.borrarVertice(1);
+        Iterator<Integer> vertices = gDirigido.obtenerVertices();   //iterador de vertices
+
+        if (vertices != null) {
+            System.out.println("vertices: ");
+            while (vertices.hasNext()) {
+                System.out.print(vertices.next() + " ");
+            }
+        }
+
+        Iterator<Arco> arcos = gDirigido.obtenerArcos();    //iterador de arcos
 
         System.out.println(" ");
-        System.out.println("cantidad de vertices "+ gDirigido.cantidadVertices());
+        System.out.println(" ");
+        if (arcos != null) {
+            System.out.println("Arcos:");
+            while (arcos.hasNext()) {
+                Arco arco = arcos.next();
+                System.out.println(arco.getVerticeOrigen() + " --> " + arco.getVerticeDestino());
+            }
+        }
 
-        System.out.println("cantidad de arcos: "+ gDirigido.cantidadArcos());
-
-        gDirigido.obtenerArcoss();
-
+        Iterator<Arco> arcosPorVertice = gDirigido.obtenerArcos(4); //iterador de arcos de un determinado vertice
 
         System.out.println(" ");
-
-    /*    System.out.println(gDirigido.obtenerVertices());
-
-        Iterator<Integer> aux = gDirigido.obtenerVertices();
-        while (aux.hasNext()){
-
-            System.out.println(aux.next());
-        //    aux.next();
+        if (arcosPorVertice != null) {
+            System.out.println("Arcos por vertice:");
+            while (arcosPorVertice.hasNext()) {
+                Arco arco = arcosPorVertice.next();
+                System.out.println(arco.getVerticeOrigen() + " --> " + arco.getVerticeDestino());
+            }
         }*/
 
+        /////////////////////////////////////////GRAFO NO DIRIGIDO/////////////////////////////////////////////////////////////////
+
+/*
+
+        GrafoNoDirigido gNoDirigido = new GrafoNoDirigido();   //instancia el grafo no dirigido
+
+        gNoDirigido.agregarVertice(1);
+        gNoDirigido.agregarVertice(2);
+        gNoDirigido.agregarVertice(3);
+        gNoDirigido.agregarVertice(4);
+
+        gNoDirigido.agregarArco(1,2, 10);
+        gNoDirigido.agregarArco(1,4,15);
+        gNoDirigido.agregarArco(1,3,12);
+        gNoDirigido.agregarArco(4,3,55);
+        gNoDirigido.agregarArco(2,4,22);
+        gNoDirigido.agregarArco(4,1,445);
+
+        Iterator<Arco> arcos = gNoDirigido.obtenerArcos();    //iterador de arcos
+
+        System.out.println(" ");
+        System.out.println(" ");
+        System.out.println(" ");
+        if (arcos != null) {
+            System.out.println("Arcos:");
+            while (arcos.hasNext()) {
+                Arco arco = arcos.next();
+                System.out.println(arco.getVerticeOrigen() + " --> " + arco.getVerticeDestino());
+            }
+        }
+
+        System.out.println("cantidad de arcos: "+gNoDirigido.cantidadArcos());
+        System.out.println("cantidad de vertices: "+gNoDirigido.cantidadVertices());
+
+       // gNoDirigido.borrarVertice(4);
+
+        Iterator<Arco> arcos2 = gNoDirigido.obtenerArcos();    //iterador de arcos
+        System.out.println(" ");
+        System.out.println(" ");
+        System.out.println(" ");
+        if (arcos2 != null) {
+            System.out.println("Arcos:");
+            while (arcos2.hasNext()) {
+                Arco arco = arcos2.next();
+                System.out.println(arco.getVerticeOrigen() + " --> " + arco.getVerticeDestino());
+            }
+        }
+        System.out.println("cantidad de arcos: "+gNoDirigido.cantidadArcos());
+        System.out.println("cantidad de vertices: "+gNoDirigido.cantidadVertices());
 
 
+
+        Iterator<Arco> arcosPorVertice = gNoDirigido.obtenerArcos(4); //iterador de arcos de un determinado vertice
+
+        System.out.println(" ");
+        if (arcosPorVertice != null) {
+            System.out.println("Arcos por vertice:");
+            while (arcosPorVertice.hasNext()) {
+                Arco arco = arcosPorVertice.next();
+                System.out.println(arco.getVerticeOrigen() + " --> " + arco.getVerticeDestino());
+            }
+        }
+        
+ */
     }
 }

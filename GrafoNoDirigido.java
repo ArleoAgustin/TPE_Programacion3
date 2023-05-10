@@ -12,6 +12,7 @@ public class GrafoNoDirigido<T> extends GrafoDirigido<T> {
 	public void borrarArco(int verticeId1, int verticeId2) {
 		super.borrarArco(verticeId1, verticeId2);
 		super.borrarArco(verticeId2, verticeId1);
+
 	}
 	
 	@Override
