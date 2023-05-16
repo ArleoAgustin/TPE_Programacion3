@@ -3,15 +3,15 @@ package TPE_Programacion3;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.List;
+import java.util.LinkedHashMap;
 
 public class GrafoDirigido<T> implements Grafo<T> {
 
-	private HashMap<Integer, ArrayList<Arco<T>>> vertices;
+	private LinkedHashMap<Integer, ArrayList<Arco<T>>> vertices;
 	private int cantArcos, cantVertices;
 
 	public GrafoDirigido(){
-		vertices = new HashMap<>();
+		vertices = new LinkedHashMap<>();
 		this.cantArcos = 0;
 		this.cantVertices = 0;
 	}
@@ -123,7 +123,8 @@ public class GrafoDirigido<T> implements Grafo<T> {
 
 	@Override
 	public Iterator<Integer> obtenerVertices() {
-
+		vertices.forEach((vertice, valor) ->{
+		});
 		return vertices.keySet().iterator();
 	}
 

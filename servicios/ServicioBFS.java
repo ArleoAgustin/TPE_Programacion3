@@ -6,16 +6,17 @@ import java.util.*;
 
 public class ServicioBFS {
 
-    HashMap<Integer, Boolean> vertices = new HashMap<>();
+    HashMap<Integer, Boolean> vertices;
 
     private Grafo<?> grafo;
 
     public ServicioBFS(Grafo<?> grafo) {
         this.grafo = grafo;
+        this.vertices = new HashMap<>();
+        Iterator<Integer> iteradorVertices = grafo.obtenerVertices();   //iterador de vertices
 
-        Iterator<Integer> vertices = grafo.obtenerVertices();   //iterador de vertices
-        while (vertices.hasNext()) {
-            this.vertices.put(vertices.next(), false);
+        while (iteradorVertices.hasNext()) {
+            this.vertices.put(iteradorVertices.next(), false);
         }
     }
 
@@ -33,7 +34,7 @@ public class ServicioBFS {
     }
 
     private ArrayList<Integer> bfsForest(int vertice){
-        
+
         Queue<Integer> fila = new LinkedList<>();
         ArrayList<Integer> visitados = new ArrayList<>();
 
@@ -43,13 +44,14 @@ public class ServicioBFS {
             int primerVertice = fila.poll();        // Obtiene el primer vértice de la fila y lo remueve
             visitados.add(primerVertice);
             Iterator<Integer> adyacentes = grafo.obtenerAdyacentes(primerVertice);  // Obtiene los adyacentes del vértice
+            if (adyacentes != null) {
+                while (adyacentes.hasNext()) {          // Recorre los adyacentes
+                    int ady = adyacentes.next();    // Obtiene el adyacente actual
 
-            while (adyacentes.hasNext()) {          // Recorre los adyacentes
-                Integer ady = adyacentes.next();    // Obtiene el adyacente actual
-
-                if (vertices.get(ady).booleanValue() == false) {        // Si no ha sido visitado
-                    vertices.put(ady, true);        // Marca el adyacente como visitado
-                    fila.add(ady);                  // Agrega el adyacente a la fila
+                    if (vertices.get(ady).booleanValue() == false) {        // Si no ha sido visitado
+                        vertices.put(ady, true);        // Marca el adyacente como visitado
+                        fila.add(ady);                  // Agrega el adyacente a la fila
+                    }
                 }
             }
         }

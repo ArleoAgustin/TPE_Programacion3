@@ -1,6 +1,7 @@
 package TPE_Programacion3;
 
 import TPE_Programacion3.servicios.ServicioBFS;
+import TPE_Programacion3.servicios.ServicioDFS;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -12,24 +13,31 @@ public class Main {
         GrafoDirigido gDirigido = new GrafoDirigido();  //instancia el grafo dirigido
 //carga los vertices
 
-        gDirigido.agregarVertice(1);
-        gDirigido.agregarVertice(99);
-        gDirigido.agregarVertice(45);
-        gDirigido.agregarVertice(61);
-        gDirigido.agregarVertice(8);
-        gDirigido.agregarVertice(20);
-        gDirigido.agregarVertice(50);
+        gDirigido.agregarVertice(23);
+        gDirigido.agregarVertice(6);
+        gDirigido.agregarVertice(66);
+        gDirigido.agregarVertice(87);
+        gDirigido.agregarVertice(52);
+        gDirigido.agregarVertice(46);
+        gDirigido.agregarVertice(32);
+        gDirigido.agregarVertice(18);
 
 //carga los arcos
 
-        gDirigido.agregarArco(1, 99, 1);
-        gDirigido.agregarArco(1, 45, 1);
-        gDirigido.agregarArco(8, 1, 4);
-        gDirigido.agregarArco(99, 8, 5);
-        gDirigido.agregarArco(45, 61, 3);
-        gDirigido.agregarArco(61, 8, 11);
-        gDirigido.agregarArco(8, 20, 88);
-        gDirigido.agregarArco(8, 50, 10);
+        gDirigido.agregarArco(23, 6, 1);
+        gDirigido.agregarArco(6, 66, 1);
+        gDirigido.agregarArco(66, 23, 4);
+        gDirigido.agregarArco(6, 52, 5);
+        gDirigido.agregarArco(23, 52, 3);
+        gDirigido.agregarArco(52, 66, 10);
+        gDirigido.agregarArco(23, 87, 11);
+        gDirigido.agregarArco(87, 52, 88);
+        gDirigido.agregarArco(87, 46, 10);
+        gDirigido.agregarArco(32, 87, 10);
+        gDirigido.agregarArco(32, 46, 10);
+        gDirigido.agregarArco(46, 52, 10);
+        gDirigido.agregarArco(32, 18, 10);
+        gDirigido.agregarArco(18, 52, 10);
         //   System.out.println(gDirigido.contieneVertice(1)); //verifica si contien el vertice
         //   System.out.println(gDirigido.existeArco(4,3));    //verifica si existe el arco
         //  System.out.println(gDirigido.obtenerArco(1,4));    //obtiene el arco
@@ -80,15 +88,26 @@ public class Main {
 
 
         ///////////////////////////////////////SERVICIO BFS////////////////////////////////////////////////////////////////
-
+/*
         ServicioBFS BFS = new ServicioBFS(gDirigido);
-        Iterator<Integer> it = BFS.bfsForest().iterator();
+        Iterator<Integer> iBfs = BFS.bfsForest().iterator();
         System.out.println(" ");
         System.out.println(" ");
-        if (it != null) {
+        if (iBfs != null) {
             System.out.println("BFS");
-            while (it.hasNext()) {
-                System.out.print(it.next() + " ");
+            while (iBfs.hasNext()) {
+                System.out.print(iBfs.next() + " ");
+            }
+        }*/
+
+        ServicioDFS DFS = new ServicioDFS(gDirigido);
+        Iterator<Integer> iDfs = DFS.dfsForest().iterator();
+        System.out.println(" ");
+        System.out.println(" ");
+        if (iDfs != null) {
+            System.out.println("DFS");
+            while (iDfs.hasNext()) {
+                System.out.print(iDfs.next() + " ");
             }
         }
         /////////////////////////////////////////GRAFO NO DIRIGIDO/////////////////////////////////////////////////////////////////
