@@ -1,29 +1,35 @@
 package TPE_Programacion3;
 
+import TPE_Programacion3.servicios.ServicioBFS;
+
+import java.util.ArrayList;
 import java.util.Iterator;
 
 public class Main {
 
     public static void main(String[] args) {
-/*
+
         GrafoDirigido gDirigido = new GrafoDirigido();  //instancia el grafo dirigido
 //carga los vertices
 
         gDirigido.agregarVertice(1);
-        gDirigido.agregarVertice(2);
-        gDirigido.agregarVertice(3);
-        gDirigido.agregarVertice(4);
+        gDirigido.agregarVertice(99);
+        gDirigido.agregarVertice(45);
+        gDirigido.agregarVertice(61);
+        gDirigido.agregarVertice(8);
+        gDirigido.agregarVertice(20);
+        gDirigido.agregarVertice(50);
 
 //carga los arcos
 
-        gDirigido.agregarArco(1, 2, 1);
-        gDirigido.agregarArco(2, 1, 1);
-        gDirigido.agregarArco(1, 4, 4);
-        gDirigido.agregarArco(4, 2, 5);
-        gDirigido.agregarArco(1, 3, 3);
-        gDirigido.agregarArco(4, 3, 11);
-        gDirigido.agregarArco(4, 1, 10);
-
+        gDirigido.agregarArco(1, 99, 1);
+        gDirigido.agregarArco(1, 45, 1);
+        gDirigido.agregarArco(8, 1, 4);
+        gDirigido.agregarArco(99, 8, 5);
+        gDirigido.agregarArco(45, 61, 3);
+        gDirigido.agregarArco(61, 8, 11);
+        gDirigido.agregarArco(8, 20, 88);
+        gDirigido.agregarArco(8, 50, 10);
         //   System.out.println(gDirigido.contieneVertice(1)); //verifica si contien el vertice
         //   System.out.println(gDirigido.existeArco(4,3));    //verifica si existe el arco
         //  System.out.println(gDirigido.obtenerArco(1,4));    //obtiene el arco
@@ -47,7 +53,7 @@ public class Main {
                 System.out.print(vertices.next() + " ");
             }
         }
-
+/*
         Iterator<Arco> arcos = gDirigido.obtenerArcos();    //iterador de arcos
 
         System.out.println(" ");
@@ -71,6 +77,20 @@ public class Main {
             }
         }*/
 
+
+
+        ///////////////////////////////////////SERVICIO BFS////////////////////////////////////////////////////////////////
+
+        ServicioBFS BFS = new ServicioBFS(gDirigido);
+        Iterator<Integer> it = BFS.bfsForest().iterator();
+        System.out.println(" ");
+        System.out.println(" ");
+        if (it != null) {
+            System.out.println("BFS");
+            while (it.hasNext()) {
+                System.out.print(it.next() + " ");
+            }
+        }
         /////////////////////////////////////////GRAFO NO DIRIGIDO/////////////////////////////////////////////////////////////////
 
 /*
