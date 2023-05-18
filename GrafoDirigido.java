@@ -18,6 +18,10 @@ public class GrafoDirigido<T> implements Grafo<T> {
 
 //agrega un vertice
 
+	/**
+	 * Complejidad:	O(1) donde 1 es una variable debido a que en hashmap guarda el Key y Value directo
+	 *
+	 */
 	@Override
 	public void agregarVertice(int verticeId) {
 
@@ -29,6 +33,10 @@ public class GrafoDirigido<T> implements Grafo<T> {
 
 //borra un vertice
 
+	/**
+	 * Complejidad:
+	 *
+	 */
 	@Override
 	public void borrarVertice(int verticeId){
 
@@ -43,6 +51,10 @@ public class GrafoDirigido<T> implements Grafo<T> {
 
 //borra un arco
 
+	/**
+	 * Complejidad:
+	 *
+	 */
 	@Override
 	public void borrarArco(int verticeId1, int verticeId2) {
 
@@ -59,6 +71,10 @@ public class GrafoDirigido<T> implements Grafo<T> {
 
 //agrega un arco
 
+	/**
+	 * Complejidad:
+	 *
+	 */
 	@Override
 	public void agregarArco(int verticeId1, int verticeId2, T etiqueta) {
 
@@ -70,6 +86,10 @@ public class GrafoDirigido<T> implements Grafo<T> {
 
 //verifica si contiene un determinado vertice
 
+	/**
+	 * Complejidad:
+	 *
+	 */
 	@Override
 	public boolean contieneVertice(int verticeId) {
 
@@ -78,6 +98,10 @@ public class GrafoDirigido<T> implements Grafo<T> {
 
 //verifica si existe un determinado arco
 
+	/**
+	 * Complejidad:
+	 *
+	 */
 	@Override
 	public boolean existeArco(int verticeId1, int verticeId2) {
 
@@ -94,6 +118,10 @@ public class GrafoDirigido<T> implements Grafo<T> {
 
 //obtiene un determinado arco
 
+	/**
+	 * Complejidad:
+	 *
+	 */
 	@Override
 	public Arco<T> obtenerArco(int verticeId1, int verticeId2) {
 
@@ -108,11 +136,19 @@ public class GrafoDirigido<T> implements Grafo<T> {
 
 //retorna la cantidad de vertices
 
+	/**
+	 * Complejidad:
+	 *
+	 */
 	@Override
 	public int cantidadVertices() { return this.cantVertices; }
 
 //retorna la cantidad de arcos
 
+	/**
+	 * Complejidad:
+	 *
+	 */
 	@Override
 	public int cantidadArcos() { return this.cantArcos; }
 
@@ -121,6 +157,10 @@ public class GrafoDirigido<T> implements Grafo<T> {
 
 //retorna un iterador de los vertices
 
+	/**
+	 * Complejidad:
+	 *
+	 */
 	@Override
 	public Iterator<Integer> obtenerVertices() {
 		vertices.forEach((vertice, valor) ->{
@@ -130,6 +170,10 @@ public class GrafoDirigido<T> implements Grafo<T> {
 
 //retorna un iterador de los valores adyacentes a un vertice
 
+	/**
+	 * Complejidad:
+	 *
+	 */
 	@Override
 	public Iterator<Integer> obtenerAdyacentes(int verticeId) {
 
@@ -148,6 +192,10 @@ public class GrafoDirigido<T> implements Grafo<T> {
 
 //retorna un iterador de arcos
 
+	/**
+	 * Complejidad:
+	 *
+	 */
 	@Override
 	public Iterator<Arco<T>> obtenerArcos() {
 
@@ -164,6 +212,10 @@ public class GrafoDirigido<T> implements Grafo<T> {
 
 //devuelve un iterador de los arcos de que parten de un vertice
 
+	/**
+	 * Complejidad:
+	 *
+	 */
 	@Override
 	public Iterator<Arco<T>> obtenerArcos(int verticeId) {
 
