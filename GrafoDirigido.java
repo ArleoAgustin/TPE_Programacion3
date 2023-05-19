@@ -1,9 +1,6 @@
 package TPE_Programacion3;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.LinkedHashMap;
+import java.util.*;
 
 public class GrafoDirigido<T> implements Grafo<T> {
 
@@ -19,8 +16,9 @@ public class GrafoDirigido<T> implements Grafo<T> {
 //agrega un vertice
 
 	/**
-	 * Complejidad:	O(1) donde 1 es una variable debido a que en hashmap guarda el Key y Value directo
-	 *
+	 * Complejidad:	O(1) ya que lo hace en tiempo de ejecucion constante. Y tanto
+	 * el "contiene vertice()" como el "put()" del hashmap son O(1). Ya que no dependen
+	 * del tamaño de la estructura.
 	 */
 	@Override
 	public void agregarVertice(int verticeId) {
@@ -34,8 +32,8 @@ public class GrafoDirigido<T> implements Grafo<T> {
 //borra un vertice
 
 	/**
-	 * Complejidad:
-	 *
+	 * Complejidad: O(n) donde n es el numero de vertices en el grafo debido a que se debe recorrer todos
+	 * los vertices del grafo para borrar los arcos vinculados a el.
 	 */
 	@Override
 	public void borrarVertice(int verticeId){
@@ -52,28 +50,27 @@ public class GrafoDirigido<T> implements Grafo<T> {
 //borra un arco
 
 	/**
-	 * Complejidad:
-	 *
-	 */
+	 * Complejidad: O(n) donde n es el tamanio de arcos asociados al vertice. Ya que
+	 * a que se debe recorrer todos los arcos del vertice dado para verificar si se
+	 * encuentra en su lista de arcos y posteriormente elimiarlo
+	 * */
 	@Override
 	public void borrarArco(int verticeId1, int verticeId2) {
 
-		vertices.forEach((vertice, arco)->{
-			for (int i = 0; i < arco.size(); i++) {
-				if (arco.get(i).getVerticeOrigen() == verticeId1 && arco.get(i).getVerticeDestino() == verticeId2){
-					arco.remove(arco.get(i));
-					cantArcos--;
-				}
-			}
+		for(int i = 0; i < vertices.get(verticeId1).size(); i++)
 
-		});
+			if (vertices.get(verticeId1).get(i).getVerticeDestino() == verticeId2){
+				vertices.get(verticeId1).remove(vertices.get(verticeId1).get(i));
+				cantArcos--;
+			}
 	}
+
 
 //agrega un arco
 
 	/**
-	 * Complejidad:
-	 *
+	 * Complejidad: O(1) ya que la complejidad es constante, debido a que se accede directamente al vertice
+	 * si existe y se agrega un nuevo arco en su lista.
 	 */
 	@Override
 	public void agregarArco(int verticeId1, int verticeId2, T etiqueta) {
@@ -87,8 +84,8 @@ public class GrafoDirigido<T> implements Grafo<T> {
 //verifica si contiene un determinado vertice
 
 	/**
-	 * Complejidad:
-	 *
+	 * Complejidad: O(1) ya que el timepo de ejecucion es constante y accede directamente a verificar
+	 * si ese vertice existe
 	 */
 	@Override
 	public boolean contieneVertice(int verticeId) {
@@ -99,8 +96,9 @@ public class GrafoDirigido<T> implements Grafo<T> {
 //verifica si existe un determinado arco
 
 	/**
-	 * Complejidad:
-	 *
+	 * Complejidad: O(n) donde n es la cantidad de arcos asociados a un vertice
+	 * ya que tenemos que recorrer el value (ArrayList<Arco<<T>>) de la key(vertice)
+	 * para verificar que exista el arco.
 	 */
 	@Override
 	public boolean existeArco(int verticeId1, int verticeId2) {
@@ -108,7 +106,7 @@ public class GrafoDirigido<T> implements Grafo<T> {
 		if (this.contieneVertice(verticeId1)) {
 
 			for (Arco<T> input: vertices.get(verticeId1)){
-				if (input.getVerticeOrigen() == verticeId1 && input.getVerticeDestino() == verticeId2)
+				if (input.getVerticeDestino() == verticeId2)
 					return true;
 			}
 		}
@@ -116,18 +114,20 @@ public class GrafoDirigido<T> implements Grafo<T> {
 		return false;
 	}
 
+
 //obtiene un determinado arco
 
 	/**
-	 * Complejidad:
-	 *
+	 * Complejidad: O(n) donde n es la cantidad de arcos asociados a un vertice
+	 * ya que tenemos que recorrer el value (ArrayList<Arco<<T>>) de la key(vertice)
+	 * para retornar el arco.
 	 */
 	@Override
 	public Arco<T> obtenerArco(int verticeId1, int verticeId2) {
 
 		if (this.contieneVertice(verticeId1)) {
 			for (Arco<T> input: vertices.get(verticeId1)){
-				if (input.getVerticeOrigen() == verticeId1 && input.getVerticeDestino() == verticeId2)
+				if (input.getVerticeDestino() == verticeId2)
 					return input;
 			}
 		}
@@ -137,8 +137,7 @@ public class GrafoDirigido<T> implements Grafo<T> {
 //retorna la cantidad de vertices
 
 	/**
-	 * Complejidad:
-	 *
+	 * Complejidad: O(1) ya que es una operacion de acceso y retorno del valor
 	 */
 	@Override
 	public int cantidadVertices() { return this.cantVertices; }
@@ -146,8 +145,7 @@ public class GrafoDirigido<T> implements Grafo<T> {
 //retorna la cantidad de arcos
 
 	/**
-	 * Complejidad:
-	 *
+	 * Complejidad: O(1) ya que es una operacion de acceso y retorno del valor
 	 */
 	@Override
 	public int cantidadArcos() { return this.cantArcos; }
@@ -158,21 +156,22 @@ public class GrafoDirigido<T> implements Grafo<T> {
 //retorna un iterador de los vertices
 
 	/**
-	 * Complejidad:
-	 *
+	 * Complejidad: O(1) ya que Hashmap proporciona un iterator que se crea en tiempo constante,
+	 * manteniendo una referencia interna a los vertices y asi poder retornar un iterador de
+	 * vertices.
 	 */
 	@Override
 	public Iterator<Integer> obtenerVertices() {
-		vertices.forEach((vertice, valor) ->{
-		});
+
 		return vertices.keySet().iterator();
 	}
 
 //retorna un iterador de los valores adyacentes a un vertice
 
 	/**
-	 * Complejidad:
-	 *
+	 * Complejidad: O(n) donde n es la cantidad de arcos asociados al vertice y debe
+	 * recorrer todos los arcos del vertice para agregarlos a un arreglo y posteriormente
+	 * retornalos.
 	 */
 	@Override
 	public Iterator<Integer> obtenerAdyacentes(int verticeId) {
@@ -193,8 +192,9 @@ public class GrafoDirigido<T> implements Grafo<T> {
 //retorna un iterador de arcos
 
 	/**
-	 * Complejidad:
-	 *
+	 * Complejidad: O(n*m) donde n es la cantidad de vertices y m la cantidad de arcos, debido
+	 *  a que para obtener todos los arcos del grafo se debe recorrer todos los vertices del mismo
+	 *  para asi poder ir obteniendo todos los arcos de cada vertice. y luego retornarlos en un iterator
 	 */
 	@Override
 	public Iterator<Arco<T>> obtenerArcos() {
@@ -213,8 +213,9 @@ public class GrafoDirigido<T> implements Grafo<T> {
 //devuelve un iterador de los arcos de que parten de un vertice
 
 	/**
-	 * Complejidad:
-	 *
+	 * Complejidad: O(n) donde n es la cantidad de arcos asociados a el vertice, ya que
+	 * para obtener los arcos de un vertice debemos recorrer su lista de arcos y agregarlos
+	 * a una lista y retornalos como un iterator.
 	 */
 	@Override
 	public Iterator<Arco<T>> obtenerArcos(int verticeId) {

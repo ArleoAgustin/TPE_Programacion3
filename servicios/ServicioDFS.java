@@ -36,7 +36,6 @@ public class ServicioDFS {
         vertices.put(v,"Amarillo"); //lo marca como visitado
         r.add(v);
         Iterator<Integer> adyacentes = grafo.obtenerAdyacentes(v);  // Obtiene los adyacentes del vértice
-
         if (adyacentes!= null){
             while (adyacentes.hasNext()) {
                 int ady = adyacentes.next();
@@ -44,7 +43,6 @@ public class ServicioDFS {
                     this.dfsForest(ady, r);
             }
         }
-        vertices.put(v, "Negro");   //lo pinta de negro
         return r;
     }
 
