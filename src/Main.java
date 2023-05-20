@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -5,7 +6,14 @@ public class Main {
 
     public static void main(String[] args) {
 
-        GrafoDirigido gDirigido = new GrafoDirigido();  //instancia el grafo dirigido
+
+        /*
+        * Todos los ejercicios solicitados fueron basados en ejemplo diagramado en "ejemplo.png"
+        */
+
+
+
+        GrafoDirigido<Integer> gDirigido = new GrafoDirigido<>();  //instancia el grafo dirigido
 
 //carga los vertices
         gDirigido.agregarVertice(23);
@@ -57,14 +65,14 @@ public class Main {
             }
         }
 
-        Iterator<Arco> arcos = gDirigido.obtenerArcos();    //iterador de arcos
+        Iterator<Arco<Integer>> arcos = gDirigido.obtenerArcos();    //iterador de arcos
 
         System.out.println(" ");
         System.out.println(" ");
         if (arcos != null) {
             System.out.println("Arcos del grafo:");
             while (arcos.hasNext()) {
-                Arco arco = arcos.next();
+                Arco<Integer> arco = arcos.next();
                 System.out.println(arco.getVerticeOrigen() + " --> " + arco.getVerticeDestino());
             }
         }
@@ -93,38 +101,15 @@ public class Main {
         ServicioDFS DFS = new ServicioDFS(gDirigido);
         Iterator<Integer> iDfs = DFS.dfsForest().iterator();
 
-        if (iDfs != null) {
-            System.out.println("DFS");
-            while (iDfs.hasNext()) {
-                System.out.print(iDfs.next() + " ");
-            }
+        System.out.println("DFS: ");
+
+        while (iDfs.hasNext()) {
+            System.out.print(iDfs.next() + " ");
         }
 
 
 ////////////////////////////////////////////SERVICIO BFS ///////////////////////////////////////////////
         System.out.println(" ");
-
-        GrafoDirigido gDirigidoBFS = new GrafoDirigido();  //instancia el grafo dirigido
-
-//se crean los vertices
-        gDirigidoBFS.agregarVertice(1);
-        gDirigidoBFS.agregarVertice(99);
-        gDirigidoBFS.agregarVertice(45);
-        gDirigidoBFS.agregarVertice(61);
-        gDirigidoBFS.agregarVertice(8);
-        gDirigidoBFS.agregarVertice(20);
-        gDirigidoBFS.agregarVertice(50);
-
-//se crean los arcos
-
-        gDirigidoBFS.agregarArco(1, 99, 10);
-        gDirigidoBFS.agregarArco(1, 45, 10);
-        gDirigidoBFS.agregarArco(99, 8, 10);
-        gDirigidoBFS.agregarArco(8, 1, 10);
-        gDirigidoBFS.agregarArco(45, 61, 10);
-        gDirigidoBFS.agregarArco(61, 8, 10);
-        gDirigidoBFS.agregarArco(8, 20, 10);
-        gDirigidoBFS.agregarArco(8, 50, 10);
 
 
 //muestra el camino del BFS
@@ -135,12 +120,11 @@ public class Main {
         ServicioBFS BFS = new ServicioBFS(gDirigido);
         Iterator<Integer> iBfs = BFS.bfsForest().iterator();
 
-        if (iBfs != null) {
-            System.out.println("BFS");
-            while (iBfs.hasNext()) {
-                System.out.print(iBfs.next() + " ");
-            }
+        System.out.println("BFS: ");
+        while (iBfs.hasNext()) {
+            System.out.print(iBfs.next() + " ");
         }
+
 
 
 ///////////////////////////////////////SERVICIO CAMINOS////////////////////////////////////////////////////////////////
@@ -150,14 +134,13 @@ public class Main {
         System.out.println(" ");
         System.out.println(" ");
 
-        ServicioCaminos ServicioCaminos = new ServicioCaminos(gDirigido, 23, 66, 4);
+        ServicioCaminos ServicioCaminos = new ServicioCaminos(gDirigido, 23, 6, 5);    //Servcaminos
+
         Iterator<List<Integer>> iCaminos = ServicioCaminos.caminos().iterator();
 
-        if (iCaminos != null) {
-            System.out.println("Caminos");
-            while (iCaminos.hasNext()) {
-                System.out.print(iCaminos.next() + " ");
-            }
+        System.out.println("Caminos: ");
+        while (iCaminos.hasNext()) {
+            System.out.print(iCaminos.next() + " ");
         }
 
     }

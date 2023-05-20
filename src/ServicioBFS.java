@@ -3,12 +3,12 @@ import java.util.*;
 
 public class ServicioBFS {
 
-    HashMap<Integer, Boolean> vertices;
+    LinkedHashMap<Integer, Boolean> vertices;
     private Grafo<?> grafo;
 
     public ServicioBFS(Grafo<?> grafo) {
         this.grafo = grafo;
-        this.vertices = new HashMap<>();
+        this.vertices = new LinkedHashMap<>();
         Iterator<Integer> iteradorVertices = grafo.obtenerVertices();   //iterador de vertices
 
         while (iteradorVertices.hasNext()) {
@@ -21,8 +21,7 @@ public class ServicioBFS {
         ArrayList<Integer> res = new ArrayList<>();
 
         for (Integer v : vertices.keySet()) {
-
-            if (vertices.get(v).booleanValue() == false)    //si el vertice no fue visitado
+            if (!vertices.get(v))    //si el vertice no fue visitado
                 res.addAll(this.bfsForest(v));      //agrega todos los visitados
         }
 
@@ -40,11 +39,12 @@ public class ServicioBFS {
             int primerVertice = fila.poll();        // Obtiene el primer vertice de la fila y lo remueve
             visitados.add(primerVertice);
             Iterator<Integer> adyacentes = grafo.obtenerAdyacentes(primerVertice);  // Obtiene los adyacentes del vértice
+
             if (adyacentes != null) {
                 while (adyacentes.hasNext()) {          // Recorre los adyacentes
                     int ady = adyacentes.next();    // Obtiene el adyacente actual
 
-                    if (vertices.get(ady).booleanValue() == false) {        // Si no ha sido visitado
+                    if (!vertices.get(ady)) {        // Si no ha sido visitado
                         vertices.put(ady, true);        // Marca el adyacente como visitado
                         fila.add(ady);                  // Agrega el adyacente a la fila
                     }

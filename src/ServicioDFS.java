@@ -1,6 +1,5 @@
 import java.util.*;
 
-
 public class ServicioDFS {
 
     private HashMap<Integer, String> vertices;
@@ -12,7 +11,7 @@ public class ServicioDFS {
         Iterator<Integer> iteradorVertices = grafo.obtenerVertices();   //iterador de vertices
 
         while (iteradorVertices.hasNext()) {
-            this.vertices.put(iteradorVertices.next(), "Blanco");
+            this.vertices.put(iteradorVertices.next(), "Blanco");   //se agregan los vertices en "blanco"
         }
     }
 
@@ -33,6 +32,7 @@ public class ServicioDFS {
         vertices.put(v,"Amarillo"); //lo marca como visitado
         r.add(v);
         Iterator<Integer> adyacentes = grafo.obtenerAdyacentes(v);  // Obtiene los adyacentes del vértice
+
         if (adyacentes!= null){
             while (adyacentes.hasNext()) {
                 int ady = adyacentes.next();
