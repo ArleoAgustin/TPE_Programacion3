@@ -2,11 +2,11 @@ import java.util.*;
 
 public class GrafoDirigido<T> implements Grafo<T> {
 
-	private HashMap<Integer, ArrayList<Arco<T>>> vertices;
+	private LinkedHashMap<Integer, ArrayList<Arco<T>>> vertices;
 	private int cantArcos, cantVertices;
 
 	public GrafoDirigido(){
-		vertices = new HashMap<>();
+		vertices = new LinkedHashMap<>();
 		this.cantArcos = 0;
 		this.cantVertices = 0;
 	}

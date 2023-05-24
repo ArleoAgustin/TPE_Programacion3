@@ -8,7 +8,9 @@ public class Main {
 
 
         /*
-        * Todos los ejercicios solicitados fueron basados en ejemplo diagramado en "ejemplo.png"
+        * Todos los ejercicios solicitados fueron basados en la figura de ejemplo en "ejemplo.png".
+        * Se utilizo linkedHashmap para mantener un orden a la hora de cargar los vertices, y
+        * asi compararlo con la figura de ejemplo
         */
 
 

@@ -3,7 +3,7 @@ import java.util.*;
 
 public class ServicioBFS {
 
-    LinkedHashMap<Integer, Boolean> vertices;
+    private LinkedHashMap<Integer, Boolean> vertices;
     private Grafo<?> grafo;
 
     public ServicioBFS(Grafo<?> grafo) {

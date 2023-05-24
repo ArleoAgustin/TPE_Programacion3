@@ -2,12 +2,12 @@ import java.util.*;
 
 public class ServicioDFS {
 
-    private HashMap<Integer, String> vertices;
+    private LinkedHashMap<Integer, String> vertices;
     private Grafo<?> grafo;
 
     public ServicioDFS(Grafo<?> grafo) {
         this.grafo = grafo;
-        this.vertices = new HashMap<>();
+        this.vertices = new LinkedHashMap<>();
         Iterator<Integer> iteradorVertices = grafo.obtenerVertices();   //iterador de vertices
 
         while (iteradorVertices.hasNext()) {
