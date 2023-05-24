@@ -6,7 +6,7 @@ public class GrafoDirigido<T> implements Grafo<T> {
 	private int cantArcos, cantVertices;
 
 	public GrafoDirigido(){
-		vertices = new LinkedHashMap<>();
+		this.vertices = new LinkedHashMap<>();
 		this.cantArcos = 0;
 		this.cantVertices = 0;
 	}
