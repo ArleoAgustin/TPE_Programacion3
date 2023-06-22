@@ -5,6 +5,10 @@ public class GrafoDirigido<T> implements Grafo<T> {
 	private LinkedHashMap<Integer, ArrayList<Arco<T>>> vertices;
 	private int cantArcos, cantVertices;
 
+	/**
+	* Complejidad: O(1) ya que no tiene ninguna operacion iterativa y se ejecuta
+	* en tiempo constante
+	*/
 	public GrafoDirigido(){
 		this.vertices = new LinkedHashMap<>();
 		this.cantArcos = 0;
@@ -74,8 +78,10 @@ public class GrafoDirigido<T> implements Grafo<T> {
 	public void agregarArco(int verticeId1, int verticeId2, T etiqueta) {
 
 		if (this.contieneVertice(verticeId1)) {
-			vertices.get(verticeId1).add(new Arco<T>(verticeId1, verticeId2, etiqueta));
-			this.cantArcos++;
+			if (!this.existeArco(verticeId1, verticeId2)) {
+				vertices.get(verticeId1).add(new Arco<T>(verticeId1, verticeId2, etiqueta));
+				this.cantArcos++;
+			}
 		}
 	}
 
@@ -183,14 +189,14 @@ public class GrafoDirigido<T> implements Grafo<T> {
 			}
 			return adyacentes.iterator();
 		}
-		return null;
+		return adyacentes.iterator();
 	}
 
 
 //retorna un iterador de arcos
 
 	/**
-	 * Complejidad: O(n*m) donde n es la cantidad de vertices y m la cantidad de arcos, debido
+	 * Complejidad: O(n+m) donde n es la cantidad de vertices y m la cantidad de arcos, debido
 	 *  a que para obtener todos los arcos del grafo se debe recorrer todos los vertices del mismo
 	 *  para asi poder ir obteniendo todos los arcos de cada vertice. y luego retornarlos en un iterator
 	 */
@@ -205,7 +211,7 @@ public class GrafoDirigido<T> implements Grafo<T> {
 		if (!res.isEmpty())
 			return res.iterator();
 
-		return null;
+		return res.iterator();
 	}
 
 //devuelve un iterador de los arcos de que parten de un vertice
@@ -228,6 +234,6 @@ public class GrafoDirigido<T> implements Grafo<T> {
 			if (!res.isEmpty())
 				return res.iterator();
 		}
-		return null;
+		return res.iterator();
 	}
 }
